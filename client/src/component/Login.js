@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form,Button} from 'react-bootstrap'
+import Reset from './Reset'
 
 
 export default class Login extends React.Component{
@@ -11,49 +12,40 @@ constructor() {
   isLogined: false
  }
 }
+
 handleInputChange = (event) => {
 this.setState({
     [event.target.name]: event.target.value
   })
 }
-submitClick=() =>
-{
+submitClick=(event) =>{
 if((this.state.username=="Sundar") &&   (this.state.password=="Sundar@123"))
 {
-   this.setState({isLogined:true});
+  console.log("logged in")
+   this.setState({isLogined:true,
+      username:"",
+      password:""
+   });
 
+}
+else{
+  if((this.state.username=="") ||   (this.state.password=="")){
+    window.alert("Please enter your credentials");
+  }
 }
 }
 render() {
 return (
-<div>
-<div>
-<input type="text" name="username" hint="username" onChange=    {this.handleInputChange} />
-<input type="password" name="password" hint="password" onChange={this.handleInputChange} />
-<button  name="submit" onClick={this.submitClick}> Submit</button></div>
-//
-// <Form >
-//   <Form.Group controlId="formBasicName">
-//     <Form.Label>Email address</Form.Label>
-//     <Form.Control className="username" type="text" name="username" hint="username" onChange= {this.handleInputChange}  />
-//     <Form.Text className="text-muted">
-//       We'll never share your email with anyone else.
-//     </Form.Text>
-//   </Form.Group>
-//
-//   <Form.Group controlId="formBasicPassword">
-//     <Form.Label>Password</Form.Label>
-//     <Form.Control className="password" type="password" placeholder="Password"  name="password" hint="password" onChange={this.handleInputChange} />
-//   </Form.Group>
-//   <Form.Group controlId="formBasicChecbox">
-//     <Form.Check type="checkbox" label="Check me out" />
-//   </Form.Group>
-//   <Button variant="primary" type="submit"  onClick={this.submitClick}>
-//     Submit
-//   </Button>
-// </Form>
 
+<div>
+<h1>BookStore App</h1>
+<input type="text" name="username" hint="username" value={this.state.username} onChange=    {this.handleInputChange} />
+<br/>
+<input type="password" name="password" hint="password" value = {this.state.passwordeseteset} onChange={this.handleInputChange} />
+<br/>
+<button style= {{marginRight:"20px"}}  name="submit" onClick={this.submitClick}> Submit</button>
+<button  name="Reset" onClick={this.handlePage}> Reset</button>
 </div>
-);
+)
 }
 }
