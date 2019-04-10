@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Request from "superagent";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 
 import Login from './component/Login';
+import BookStorePage from './component/BookStorePage'
 
 class App extends Component {
   constructor(){
@@ -50,11 +52,18 @@ class App extends Component {
   render() {
 
     return (
+      <BrowserRouter>
       <div className="App">
-  <Login />
+  <Switch>
+          <Route path='/' component={Login} exact/>
+          <Route path='/main' component={BookStorePage} />
+        </Switch>
       </div>
+      </BrowserRouter>
     );
   }
 }
 
 export default App;
+
+
